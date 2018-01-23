@@ -3,7 +3,7 @@ close all
 clear
 clc
 
-exportDir = '\\ROOT\projects\GSA_Daysimeter\GSA US Embassy\Reykjavik\Daysimeter_Data\daysigrams';
+exportDir = '\\ROOT\projects\GSA_Daysimeter\StateDepartment_2017\Daysimeter_Data\daysigrams';
 
 % Load data
 data = loadData;
@@ -19,14 +19,16 @@ for iObj = 1:n
         continue
     end
     
-    titleText = {'GSA - US Embassy in Reykjavik';['ID: ',thisObj.ID,', Device SN: ',num2str(thisObj.SerialNumber)]};
+    titleText = {'GSA - State Dept';['ID: ',thisObj.ID,' ',thisObj.Session.Name]};
     
-    d = d12pack.daysigram(thisObj,titleText);
+    StartDate = dateshift(min(thisObj.Time(thisObj.Observation)),'start','day') - duration(24,0,0);
+    EndDate = dateshift(max(thisObj.Time(thisObj.Observation)),'end','day') + duration(24,0,0);
+    d = d12pack.daysigram(thisObj,titleText,StartDate,EndDate);
     
     for iFile = 1:numel(d)
         d(iFile).Title = titleText;
         
-        fileName = [thisObj.ID,'_',timestamp,'_p',num2str(iFile),'.pdf'];
+        fileName = [thisObj.ID,'_',thisObj.Session.Name,'_',timestamp,'_p',num2str(iFile),'.pdf'];
         filePath = fullfile(exportDir,fileName);
         saveas(d(iFile).Figure,filePath);
         close(d(iFile).Figure);
