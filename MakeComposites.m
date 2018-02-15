@@ -29,7 +29,7 @@ for iFile = 1:numel(ls)
                     continue
                 end
                 
-                titleText = {'Acuity - Mt Sinai';['ID: ',thisObj.ID,', Session: ',thisObj.Session.Name,', Device SN: ',num2str(thisObj.SerialNumber)]};
+                titleText = {'GSA - State Dept';['ID: ',thisObj.ID,', Session: ',thisObj.Session.Name,', Device SN: ',num2str(thisObj.SerialNumber)]};
                 
                 c = d12pack.composite(thisObj,titleText);
                 c.Title = titleText;
