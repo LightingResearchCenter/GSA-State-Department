@@ -29,7 +29,11 @@ for iFile = 1:numel(ls)
                     continue
                 end
                 
+<<<<<<< HEAD
                 titleText = {'GSA - State Department';['ID: ',thisObj.ID,', Session: ',thisObj.Session.Name,', Device SN: ',num2str(thisObj.SerialNumber)]};
+=======
+                titleText = {'GSA - State Dept';['ID: ',thisObj.ID,', Session: ',thisObj.Session.Name,', Device SN: ',num2str(thisObj.SerialNumber)]};
+>>>>>>> 775a09addcf0d8bb6afbc40843b6a8c2dd578a63
                 
                 c = d12pack.composite(thisObj,titleText);
                 c.Title = titleText;
